@@ -50,9 +50,9 @@ namespace TemaProject.Services
         {
             foreach (Department item in _departments)
             {
-                if (item.Name == depname)
+                if (item.Name == depname.ToUpper())
                 {
-                    item.Name = newname;
+                    item.Name = newname.ToUpper();
                     return;
                 }
                 Console.BackgroundColor = ConsoleColor.DarkRed;
@@ -83,30 +83,41 @@ namespace TemaProject.Services
 
         public void GetDepartments()
         {
+            Console.WriteLine("Departamentlerin siyahisi:\n\n");
             foreach (Department department in _departments)
             {
-                Console.WriteLine($"{department}\n**********************\n");
+                Console.WriteLine($"{department}\n---------------------------\n");
 
             }
         }
 
         public void RemoveEmployee(string No)
         {
+            int count = 0;
             foreach (Department department in _departments)
             {
                 for (int i = 0; i < _departments.Length; i++)
                 {
-                    if (department.Employees[i].No == No)
+                    if (department.Employees[i].No == No.ToUpper())
                     {
                         department.Employees[i] = null;
                         department.Employees[i] = department.Employees[department.Employees.Length - 1];
                         Array.Resize(ref department.Employees, department.Employees.Length - 1);
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine("Silindi!");
+                        Console.ResetColor();
+                        return;
                     }
                 }
+                count++;
+                
             }
-            Console.BackgroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Bu nomreli isci tapilmadi!");
-            Console.ResetColor();
+            if (count == _departments.Length)
+            {
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("Bu nomreli isci tapilmadi!");
+                Console.ResetColor();
+            }
         }
     }
 }

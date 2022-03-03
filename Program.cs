@@ -89,16 +89,19 @@ namespace TemaProject
                 {
                     Console.WriteLine("Deyismek istediyiniz departamentin adini yazin!");
                     string depname = Console.ReadLine();
-                    if (String.IsNullOrWhiteSpace(depname))
+                    if (!String.IsNullOrWhiteSpace(depname))
                     {
                         Console.WriteLine("Yeni adi daxil edin!");
                         string newdepname = Console.ReadLine();
 
                         newhum.EditDepartaments(depname, newdepname);
                     }
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Bu adla departament yoxdur!");
-                    Console.ResetColor();
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Bu adla departament yoxdur!");
+                        Console.ResetColor();
+                    }
                 }
                 else
                 {
@@ -110,15 +113,20 @@ namespace TemaProject
             }
             static void GetEmployees(ref HumanResourceManager newhum)
             {
+                int count = 0;
                 if (newhum.Departments.Length>0)
                 {
                     foreach (Department department in newhum.Departments)
                     {
                         if (department.Employees.Length>0)
                         {
+                            if (count == 0)
+                            {
+                                Console.WriteLine("Iscilerin siyahisi\n\n");
+                            }
                             foreach (Employee item in department.Employees)
                             {
-                                Console.WriteLine($"{item}\n**********************");
+                                Console.WriteLine($"{item}\n---------------------------");
                             }
                         }
                         else
@@ -127,6 +135,7 @@ namespace TemaProject
                             Console.WriteLine("Evvelce isci elave edin!");
                             Console.ResetColor();
                         }
+                        count++;
                         
                     }
                 }
@@ -140,6 +149,7 @@ namespace TemaProject
             }
             static void GetDepEmployees(ref HumanResourceManager newhum)
             {
+                int count = 0;
                 if (newhum.Departments.Length > 0)
                 {
                     Console.WriteLine("Hansi departamentin iscilerini gormek isteyirsiniz?");
@@ -163,10 +173,14 @@ namespace TemaProject
                                 break;
                             }
                         }
+                        count++;
+                        if (count > newhum.Departments.Length-1)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Console.WriteLine("Bu adla departament yoxdur!");
+                            Console.ResetColor();
+                        }
                     }
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Bu adla departament yoxdur!");
-                    Console.ResetColor();
                 }
                 else
                 {
@@ -202,6 +216,7 @@ namespace TemaProject
             }
             static void EditEmployee(ref HumanResourceManager newhum)
             {
+                int count = 0;
                 if (newhum.Departments.Length > 0)
                 {
                     foreach (Department item in newhum.Departments)
@@ -225,13 +240,14 @@ namespace TemaProject
 
                                     newhum.EditEmploye(empno, fullname, salary, position);
                                 }
-                                else
+                                count++;
+                                if (count == item.Employees.Length)
                                 {
-
-                                }
+                                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                                    Console.WriteLine("Bu nomreli isci tapilmadi!");
+                                    Console.ResetColor();
+                                }   
                             }
-                            
-                            
                         }
                         else
                         {
@@ -240,12 +256,10 @@ namespace TemaProject
                             Console.ResetColor();
                         }
                     }
-                    Console.WriteLine("Bu nomreli isci yoxdur!");
                 }
                 else
                 {
                     Console.BackgroundColor = ConsoleColor.DarkYellow;
-
                     Console.WriteLine("Evvel departament elave edin!");
                     Console.ResetColor();
                 }
@@ -258,16 +272,23 @@ namespace TemaProject
                     {
                         if (item.Employees.Length > 0)
                         {
+                            Console.WriteLine("Iscilerin siyahisi:\n\n");
+                            foreach (Employee employee in item.Employees)
+                            {
+                                Console.WriteLine(employee);
+                            }
                             Console.WriteLine("Iscinin nomresini daxil edin!");
                             string empno = Console.ReadLine();
 
                             newhum.RemoveEmployee(empno);
+                            break;
                         }
                         else
                         {
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("Evvelce isci elave edin!");
                             Console.ResetColor();
+                            break;
                         }
                     }
                 }
