@@ -51,7 +51,10 @@ namespace TemaProject
                         RemoveEmployee(ref newhum);
                         break;
                     default:
-                        Console.WriteLine("Verilen reqemlerden secin!");
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Verilen reqemlerden secin!"); 
+                        Console.ResetColor();
+
                         break;
                 } 
            
@@ -65,7 +68,9 @@ namespace TemaProject
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Evvelce departament elave etmelisiniz!");
+                    Console.ResetColor();
                 }
             }
             static void AddDepartment(ref HumanResourceManager newhum)
@@ -91,11 +96,15 @@ namespace TemaProject
 
                         newhum.EditDepartaments(depname, newdepname);
                     }
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Bu adla departament yoxdur!");
+                    Console.ResetColor();
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Evvelce departamnet elave edin!");
+                    Console.ResetColor();
                 }
                 
             }
@@ -105,15 +114,27 @@ namespace TemaProject
                 {
                     foreach (Department department in newhum.Departments)
                     {
-                        foreach (Employee item in department.Employees)
+                        if (department.Employees.Length>0)
                         {
-                            Console.WriteLine($"{item}\n**********************");
+                            foreach (Employee item in department.Employees)
+                            {
+                                Console.WriteLine($"{item}\n**********************");
+                            }
                         }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("Evvelce isci elave edin!");
+                            Console.ResetColor();
+                        }
+                        
                     }
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Evvelce isci elave edin!");
+                    Console.ResetColor();
                 }
 
             }
@@ -127,25 +148,33 @@ namespace TemaProject
                     {
                         if (depname.ToUpper() == department.Name)
                         {
-                            foreach (Employee item in department.Employees)
+                            if (department.Employees.Length > 0)
                             {
-                                if (department.Employees.Length > 0)
+                                foreach (Employee item in department.Employees)
                                 {
                                     Console.WriteLine(item);
                                 }
-                                else
-                                {
-                                    Console.WriteLine("Evvelce isci elave edin!");
-                                }
+                            }
+                            else
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Evvelce isci elave edin!");
+                                Console.ResetColor();
+                                break;
                             }
                         }
-                        else
-                        {
-                            Console.WriteLine("Bu adla departament yoxdur!");
-                        }
                     }
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bu adla departament yoxdur!");
+                    Console.ResetColor();
                 }
-                Console.WriteLine("Evvelce departament elave etmelisiniz!");
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("Evvelce departament elave etmelisiniz!");
+                    Console.ResetColor();
+                }
+                
             }
             static void AddEmployee(ref HumanResourceManager newhum)
             {
@@ -165,38 +194,89 @@ namespace TemaProject
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+
                     Console.WriteLine("Evvel departament elave edin!");
+                    Console.ResetColor();
                 }
             }
             static void EditEmployee(ref HumanResourceManager newhum)
             {
                 if (newhum.Departments.Length > 0)
                 {
-                    Console.WriteLine("Iscinin nomresini daxil edin!");
-                    string empno = Console.ReadLine();
-                    Console.WriteLine("Iscinin Ad ve Soyadini daxil edin!");
-                    string fullname = Console.ReadLine();
+                    foreach (Department item in newhum.Departments)
+                    {
+                        if (item.Employees.Length>0)
+                        {
+                            Console.WriteLine("Iscinin nomresini daxil edin!");
+                            string empno = Console.ReadLine();
+                            foreach (Employee employee in item.Employees)
+                            {
+                                if (employee.No == empno)
+                                {
+                                    Console.WriteLine("Iscinin Ad ve Soyadini daxil edin!");
+                                    string fullname = Console.ReadLine();
 
-                    Console.WriteLine("Iscinin vezifesini daxil edin!");
-                    string position = Console.ReadLine();
+                                    Console.WriteLine("Iscinin vezifesini daxil edin!");
+                                    string position = Console.ReadLine();
 
-                    Console.WriteLine("Iscinin maasini daxil edin!");
-                    double salary = double.Parse(Console.ReadLine());
+                                    Console.WriteLine("Iscinin maasini daxil edin!");
+                                    double salary = double.Parse(Console.ReadLine());
 
-                    newhum.EditEmploye(empno, fullname, salary, position);
+                                    newhum.EditEmploye(empno, fullname, salary, position);
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                            
+                            
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("Evvelce isci elave edin!");
+                            Console.ResetColor();
+                        }
+                    }
+                    Console.WriteLine("Bu nomreli isci yoxdur!");
                 }
                 else
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+
                     Console.WriteLine("Evvel departament elave edin!");
+                    Console.ResetColor();
                 }
             }
             static void RemoveEmployee(ref HumanResourceManager newhum)
             {
-                Console.WriteLine("Iscinin nomresini daxil edin!");
-                string empno = Console.ReadLine();
+                if (newhum.Departments.Length > 0)
+                {
+                    foreach (Department item in newhum.Departments)
+                    {
+                        if (item.Employees.Length > 0)
+                        {
+                            Console.WriteLine("Iscinin nomresini daxil edin!");
+                            string empno = Console.ReadLine();
 
-                newhum.RemoveEmployee(empno);
-
+                            newhum.RemoveEmployee(empno);
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("Evvelce isci elave edin!");
+                            Console.ResetColor();
+                        }
+                    }
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("Evvelce departament elave edin!");
+                    Console.ResetColor();
+                } 
             }
         }
     }

@@ -8,7 +8,7 @@ namespace TemaProject.Models
 {
     class Employee
     {
-        private int _count = 1000;
+        private static int _count = 1000;
 
         public string No;
         public string FullName { get; set; }
