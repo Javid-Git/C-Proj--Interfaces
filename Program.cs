@@ -164,14 +164,14 @@ namespace TemaProject
                                 {
                                     Console.WriteLine(item);
                                 }
-                                break;
+                                return;
                             }
                             else
                             {
                                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine("Evvelce isci elave edin!");
                                 Console.ResetColor();
-                                break;
+                                return;
                             }
                         }
                         //count++;
@@ -179,11 +179,10 @@ namespace TemaProject
                         //{
 
                         //}
-                        Console.BackgroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Bu adla departament yoxdur!");
-                        Console.ResetColor();
                     }
-                    
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bu adla departament yoxdur!");
+                    Console.ResetColor();
                 }
                 else
                 {
