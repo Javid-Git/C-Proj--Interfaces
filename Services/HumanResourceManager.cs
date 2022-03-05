@@ -93,10 +93,10 @@ namespace TemaProject.Services
 
         public void RemoveEmployee(string No)
         {
-            int count = 0;
+            //int count = 0;
             foreach (Department department in _departments)
             {
-                for (int i = 0; i < _departments.Length; i++)
+                for (int i = 0; i < department.Employees.Length; i++)
                 {
                     if (department.Employees[i].No == No.ToUpper())
                     {
@@ -109,15 +109,18 @@ namespace TemaProject.Services
                         return;
                     }
                 }
-                count++;
+            //    count++;
                 
+            //}
+            //if (count == _departments.Length)
+            //{
+            //    Console.BackgroundColor = ConsoleColor.DarkRed;
+            //    Console.WriteLine("Bu nomreli isci tapilmadi!");
+            //    Console.ResetColor();
             }
-            if (count == _departments.Length)
-            {
-                Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Bu nomreli isci tapilmadi!");
-                Console.ResetColor();
-            }
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Bu nomreli isci tapilmadi!");
+            Console.ResetColor();
         }
     }
 }

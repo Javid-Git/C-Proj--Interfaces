@@ -149,7 +149,7 @@ namespace TemaProject
             }
             static void GetDepEmployees(ref HumanResourceManager newhum)
             {
-                int count = 0;
+                //int count = 0;
                 if (newhum.Departments.Length > 0)
                 {
                     Console.WriteLine("Hansi departamentin iscilerini gormek isteyirsiniz?");
@@ -164,6 +164,7 @@ namespace TemaProject
                                 {
                                     Console.WriteLine(item);
                                 }
+                                break;
                             }
                             else
                             {
@@ -173,14 +174,16 @@ namespace TemaProject
                                 break;
                             }
                         }
-                        count++;
-                        if (count > newhum.Departments.Length-1)
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkRed;
-                            Console.WriteLine("Bu adla departament yoxdur!");
-                            Console.ResetColor();
-                        }
+                        //count++;
+                        //if (count > newhum.Departments.Length-1)
+                        //{
+
+                        //}
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Bu adla departament yoxdur!");
+                        Console.ResetColor();
                     }
+                    
                 }
                 else
                 {
@@ -268,20 +271,16 @@ namespace TemaProject
             {
                 if (newhum.Departments.Length > 0)
                 {
+                    Console.WriteLine("Iscilerin siyahisi:\n\n");
                     foreach (Department item in newhum.Departments)
                     {
                         if (item.Employees.Length > 0)
                         {
-                            Console.WriteLine("Iscilerin siyahisi:\n\n");
                             foreach (Employee employee in item.Employees)
                             {
                                 Console.WriteLine(employee);
                             }
-                            Console.WriteLine("Iscinin nomresini daxil edin!");
-                            string empno = Console.ReadLine();
 
-                            newhum.RemoveEmployee(empno);
-                            break;
                         }
                         else
                         {
@@ -291,6 +290,9 @@ namespace TemaProject
                             break;
                         }
                     }
+                    Console.WriteLine("Iscinin nomresini daxil edin!");
+                    string empno = Console.ReadLine();
+                    newhum.RemoveEmployee(empno);
                 }
                 else
                 {
