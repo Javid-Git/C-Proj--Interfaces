@@ -18,7 +18,7 @@ namespace TemaProject.Models
 
         public Employee(string fullname, double salary, string position, string departmentname)
         {
-            FullName = fullname.ToUpper().Replace(" ", String.Empty);
+            FullName = fullname.ToUpper().Trim();
             Salary = salary;
             Position = position.Replace(" ", String.Empty);
             DepartmentName = departmentname.Trim().ToUpper().Replace(" ", String.Empty);
