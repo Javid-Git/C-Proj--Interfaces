@@ -18,10 +18,10 @@ namespace TemaProject.Models
 
         public Employee(string fullname, double salary, string position, string departmentname)
         {
-            FullName = fullname.ToUpper();
+            FullName = fullname.ToUpper().Replace(" ", String.Empty);
             Salary = salary;
-            Position = position;
-            DepartmentName = departmentname.Trim().ToUpper();
+            Position = position.Replace(" ", String.Empty);
+            DepartmentName = departmentname.Trim().ToUpper().Replace(" ", String.Empty);
             _count++;
             No = $"{DepartmentName[0]}{DepartmentName[1]}{_count}";
         }
@@ -30,6 +30,11 @@ namespace TemaProject.Models
         {
             return $"Nomre: {No}\nAd ve Soyad: {FullName}\nDepartament: {DepartmentName}\nVezife: {Position}\nEmek haqqi: {Salary}\n";
         }
+        //public void ChangeNo(string depname)
+        //{
+        //    char[] a = No.ToCharArray();
+        //    No = new string(a);
+        //}
     }
     
 }

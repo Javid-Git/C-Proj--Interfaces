@@ -19,6 +19,7 @@ namespace TemaProject.Models
                     Console.WriteLine("Ad 2 herfden artiq olmalidir!");
                     value = Console.ReadLine();
                 }
+                value = value.Replace(" ", String.Empty);
                 _name = value;
 
                 //bool check = false;

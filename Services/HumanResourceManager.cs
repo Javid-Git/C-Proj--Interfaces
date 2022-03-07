@@ -33,6 +33,11 @@ namespace TemaProject.Services
                 {
                     department = item;
                 }
+                while (salary < item.SalaryLimit)
+                {
+                    Console.WriteLine($"Emek haqqi {item.SalaryLimit}-den eksik olmali deyil");
+                    salary = double.Parse(Console.ReadLine());
+                }
             }
             if (department != null)
             {
@@ -53,6 +58,11 @@ namespace TemaProject.Services
                 if (item.Name == depname.ToUpper())
                 {
                     item.Name = newname.ToUpper();
+                    foreach (Employee employee in item.Employees)
+                    {
+                        employee.DepartmentName = newname.ToUpper();
+                        //employee.No[0] = newname.ToUpper()[0];
+                    }
                     return;
                 }
                 Console.BackgroundColor = ConsoleColor.DarkRed;

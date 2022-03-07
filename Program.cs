@@ -21,7 +21,17 @@ namespace TemaProject
                 Console.WriteLine("7.Isci uzerinde deyisiklik etmek");
                 Console.WriteLine("8.Departamentden isci silinmesi");
                 Console.WriteLine("Verilnelerden birisini secmek ucun qbagindaki reqemi daxil edin!");
-                byte choose = byte.Parse(Console.ReadLine());
+                string tema = Console.ReadLine();
+
+                int choose;
+
+                bool normint = int.TryParse(tema, out choose);
+                while (!normint)
+                {
+                    Console.WriteLine("Duzgun secim et!");
+                    tema = Console.ReadLine();
+                    normint = int.TryParse(tema, out choose);
+                }
 
                 Console.Clear();
                 switch (choose)
