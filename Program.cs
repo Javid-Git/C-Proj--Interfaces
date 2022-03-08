@@ -227,7 +227,6 @@ namespace TemaProject
             }
             static void EditEmployee(ref HumanResourceManager newhum)
             {
-                int count = 0;
                 if (newhum.Departments.Length > 0)
                 {
                     foreach (Department item in newhum.Departments)
