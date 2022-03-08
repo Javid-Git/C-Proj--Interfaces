@@ -21,22 +21,6 @@ namespace TemaProject.Models
                 }
                 value = value.Replace(" ", String.Empty);
                 _name = value;
-
-                //bool check = false;
-                //while (check)
-                //{
-                //    if (value.Length > 2)
-                //    {
-                //        _name = value;
-                //        check = true;
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("Ad 2 herfden artiq olmalidir!");
-                //        value = Console.ReadLine();
-                //    }
-                //}
-                
             }
         }
         private int _workerLimit;
@@ -51,22 +35,6 @@ namespace TemaProject.Models
                     value = int.Parse(Console.ReadLine());
                 }
                 _workerLimit = value;
-
-                //bool check = false;
-                //while (check)
-                //{
-                //    if (value > 1)
-                //    {
-                //        _workerLimit = value;
-                //        check = true;
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("1 den artiq olmalidir!");
-                //        value = int.Parse(Console.ReadLine());
-                //    }
-                //}
-                
             }
         }
         private double _salaryLimit;
