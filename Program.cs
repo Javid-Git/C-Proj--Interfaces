@@ -142,11 +142,10 @@ namespace TemaProject
                         else
                         {
                             Console.BackgroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("Evvelce isci elave edin!");
+                            Console.WriteLine($"{department.Name} departamenti bosdur!\n---------------------------");
                             Console.ResetColor();
                         }
                         count++;
-                        
                     }
                 }
                 else
@@ -251,14 +250,9 @@ namespace TemaProject
                                     double salary = double.Parse(Console.ReadLine());
 
                                     newhum.EditEmploye(empno, fullname, salary, position);
+                                    return;
                                 }
-                                count++;
-                                if (count == item.Employees.Length)
-                                {
-                                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                                    Console.WriteLine("Bu nomreli isci tapilmadi!");
-                                    Console.ResetColor();
-                                }   
+  
                             }
                         }
                         else
@@ -268,6 +262,9 @@ namespace TemaProject
                             Console.ResetColor();
                         }
                     }
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Bu nomreli isci tapilmadi!");
+                    Console.ResetColor();
                 }
                 else
                 {

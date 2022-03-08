@@ -9,8 +9,15 @@ namespace TemaProject.Models
     class Employee
     {
         private static int _count = 1000;
-
-        public string No;
+        private string _no;
+        public string No
+        {
+            get => _no;
+            set
+            {
+                _no = value.ToUpper();
+            }
+        }
         public string FullName { get; set; }
         public double Salary { get; set; }
         public string Position;
@@ -30,11 +37,10 @@ namespace TemaProject.Models
         {
             return $"Nomre: {No}\nAd ve Soyad: {FullName}\nDepartament: {DepartmentName}\nVezife: {Position}\nEmek haqqi: {Salary}\n";
         }
-        //public void ChangeNo(string depname)
-        //{
-        //    char[] a = No.ToCharArray();
-        //    No = new string(a);
-        //}
+        public static string NameSplitter(string fullname)
+        {
+            return fullname.Split(' ')
+        }
     }
-    
+
 }

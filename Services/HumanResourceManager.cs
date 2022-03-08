@@ -20,6 +20,14 @@ namespace TemaProject.Services
 
         public void AddDepartment(string name, int workerlimit, double salarylimit)
         {
+            foreach (Department item in _departments)
+            {
+                while (name.ToUpper() == item.Name)
+                {
+                    Console.WriteLine("Bu adla departament artiq var, basqasini daxil edin!");
+                    name = Console.ReadLine();
+                }
+            }
             Array.Resize(ref _departments, _departments.Length + 1);
             _departments[_departments.Length -1] = new Department(name, workerlimit, salarylimit);
         }
@@ -55,20 +63,27 @@ namespace TemaProject.Services
         {
             foreach (Department item in _departments)
             {
+                while (newname.ToUpper() == item.Name)
+                {
+                    Console.WriteLine("Bu adla departament artiq var, basqasini daxil edin!");
+                    newname = Console.ReadLine();
+                }
                 if (item.Name == depname.ToUpper())
                 {
                     item.Name = newname.ToUpper();
                     foreach (Employee employee in item.Employees)
                     {
                         employee.DepartmentName = newname.ToUpper();
-                        //employee.No[0] = newname.ToUpper()[0];
+                        string newnew = $"{newname.ToUpper()[0]}{newname.ToUpper()[1]}{employee.No.Substring(2, 3)}";
+                        employee.No = newnew;
+                        
                     }
                     return;
                 }
-                Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Bele adli departamenet yoxdur!");
-                Console.ResetColor();
             }
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Bele adli departamenet yoxdur!");
+            Console.ResetColor();
         }
 
         public void EditEmploye(string No, string fullname, double salary, string position)

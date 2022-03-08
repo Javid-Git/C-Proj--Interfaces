@@ -47,7 +47,7 @@ namespace TemaProject.Models
             {
                 while (value <= 1)
                 {
-                    Console.WriteLine("1 den artiq olmalidir!");
+                    Console.WriteLine("Departamentdeki isci sayi 1 den artiq olmalidir!");
                     value = int.Parse(Console.ReadLine());
                 }
                 _workerLimit = value;
