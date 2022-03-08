@@ -37,10 +37,6 @@ namespace TemaProject.Models
         {
             return $"Nomre: {No}\nAd ve Soyad: {FullName}\nDepartament: {DepartmentName}\nVezife: {Position}\nEmek haqqi: {Salary}\n";
         }
-        public static string NameSplitter(string fullname)
-        {
-            return fullname.Split(' ')
-        }
     }
 
 }
