@@ -30,7 +30,7 @@ namespace TemaProject.Models
             Position = position.Replace(" ", String.Empty);
             DepartmentName = departmentname.Trim().ToUpper().Replace(" ", String.Empty);
             _count++;
-            No = $"{DepartmentName[0]}{DepartmentName[1]}{_count}";
+            No = $"{DepartmentName.Substring(0,2)}{_count}";
         }
 
         public override string ToString()
